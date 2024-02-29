@@ -1,14 +1,19 @@
+'use client'
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
+
 const NavBar = () => {
-    const links = [
-        { label: 'Home', href: '/'},
-        { label: 'About', href: '/issues'},
-        { label: 'Issues', href: '/issues'},
-        { label: 'Calendar', href: '/issues'},
-        { label: 'Board Members', href: '/issues'},
-        { label: 'Donations', href: '/issues'},
+const currentPath = usePathname();
+
+    const links = [   
+        { label: 'MCX', href: '/'},     
+        { label: 'About', href: '/About'},
+        { label: 'Issues', href: '/issues'},        
+        { label: 'Calendar', href: '/Calendar'},
+        { label: 'Board Members', href: '/BoardMembers'},
+        { label: 'Donations', href: '/Donations'},
 
     ]
   return (
@@ -18,7 +23,7 @@ const NavBar = () => {
         {links.map(link => 
         <Link 
         key={link.href} 
-        className="text-black hover:text-zinc-300 transition-colors"
+        className={`${link.href === currentPath ? 'text-black' :' text-teal-100'} hover:text-zinc-300 transition-colors`}
         href={link.href}>{link.label}</Link>)}        
       </ul>
     </nav>
