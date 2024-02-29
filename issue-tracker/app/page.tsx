@@ -13,13 +13,16 @@ export default function Home() {
           height={300}
           priority
         />
-          <div
-          style={{
-            backgroundColor: 'Black',           
-        }}
-        />
+                
       </div>
-
+      <div
+          style={{
+            backgroundColor: 'grey',  
+            width: '1000px',
+            height: '1000px'                           
+        }}
+        > 
+      </div>              
     </main>
   );
 }
