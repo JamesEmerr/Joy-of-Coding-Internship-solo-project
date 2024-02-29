@@ -15,7 +15,7 @@ export default function Home() {
         />
           <div
           style={{
-            backgroundColor: 'Black',           
+            backgroundColor: 'Blue',           
         }}
         />
       </div>
