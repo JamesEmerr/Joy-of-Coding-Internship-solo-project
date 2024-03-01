@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import classNames from "classnames";
 
 
 const NavBar = () => {
@@ -23,7 +24,11 @@ const currentPath = usePathname();
         {links.map(link => 
         <Link 
         key={link.href} 
-        className={`${link.href === currentPath ? 'text-black' :' text-teal-100'} hover:text-zinc-300 transition-colors`}
+        className={classNames({
+          'text-black': link.href === currentPath, 
+          ' text-teal-100': link.href !== currentPath,
+         'hover:text-zinc-300 transition-colors': true
+        })}
         href={link.href}>{link.label}</Link>)}        
       </ul>
     </nav>
