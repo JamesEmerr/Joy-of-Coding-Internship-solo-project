@@ -2,7 +2,7 @@ import React from 'react'
 
 const Donations = () => {
   return (
-    <div>Donations</div>
+    <div className="flex justify-center mt-3" >Donations</div>
   )
 }
 

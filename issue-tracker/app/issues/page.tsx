@@ -2,7 +2,7 @@ import React from 'react'
 
 const IssuesPage = () => {
   return (
-    <div>Issuezzzzz</div>
+    <div className="flex justify-center mt-3">Issuezzzzz</div>
   )
 }
 

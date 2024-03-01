@@ -2,7 +2,7 @@ import React from 'react'
 
 const BoardMembers = () => {
   return (
-    <div>BoardMembers</div>
+    <div className="flex justify-center mt-3">BoardMembers</div>
   )
 }
 

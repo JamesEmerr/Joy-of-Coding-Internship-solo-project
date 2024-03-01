@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 
@@ -11,7 +12,7 @@ export default function Home() {
           alt="Next.js Logo"
           width={1000}
           height={300}
-          priority
+          priority        
         />
                 
       </div>

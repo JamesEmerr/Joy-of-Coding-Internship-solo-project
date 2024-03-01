@@ -2,7 +2,7 @@ import React from 'react'
 
 const Calendar = () => {
   return (
-    <div>Calendar</div>
+    <div className="flex justify-center mt-3">Calendar</div>
   )
 }
 
