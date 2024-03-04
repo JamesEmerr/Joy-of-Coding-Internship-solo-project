@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Button } from "@radix-ui/themes";
 
 const IssuesPage = () => {
   return (
-    <div className="flex justify-center mt-3">Issuezzzzz</div>
-  )
-}
+    <div>
+      <Button>New Issuezzz</Button>
+    </div>
+  );
+};
 
-export default IssuesPage
+export default IssuesPage;
