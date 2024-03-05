@@ -20,7 +20,7 @@ const currentPath = usePathname();
   return (
     <nav className="">
       {/*        <Link href="/">Logo</Link> */}
-      <ul className="flex justify-center mt-3 space-x-6 items-center">
+      <ul className="backgroundColor: 'black', flex justify-center mt-3 space-x-6 items-center">
         {links.map(link => 
         <Link 
         key={link.href} 
