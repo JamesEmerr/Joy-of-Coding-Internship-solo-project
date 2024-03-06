@@ -25,8 +25,8 @@ const currentPath = usePathname();
         <Link 
         key={link.href} 
         className={classNames({
-          'text-black': link.href === currentPath, 
-          ' text-teal-100': link.href !== currentPath,
+          'text-red-500': link.href === currentPath, 
+          ' text-black-100': link.href !== currentPath,
          'hover:text-zinc-300 transition-colors': true
         })}
         href={link.href}>{link.label}</Link>)}        
