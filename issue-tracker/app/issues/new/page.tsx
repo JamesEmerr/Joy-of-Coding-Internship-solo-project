@@ -64,7 +64,7 @@ const NewIssuePage = () => {
             {errors.description?.message}
             </ErrorMessage>
         )}
-        <Button>Submit Issues</Button>
+        <Button>Jeff needs a brain transplant</Button>
       </form>
     </div>
   );
