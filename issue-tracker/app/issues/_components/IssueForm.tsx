@@ -7,13 +7,12 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "@/app/validationSchemas";
+import { CreateIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import { Issue } from "@prisma/client";
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
-
+type IssueFormData = z.infer<typeof CreateIssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
@@ -23,19 +22,23 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(CreateIssueSchema),
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setSubmitting(true);
+      if (issue) 
+      await axios.patch("/api/issues/" + issue.id, data);
+    else 
       await axios.post("/api/issues", data);
       router.push("/issues");
     } catch (error) {
-      setError("your a Dufus");
+      setError("your a Dufus, this is an error message");
     }
-  })
+  });
 
   return (
     <div className="max-w-xl">
@@ -44,16 +47,15 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className="space-y-3"
-        onSubmit={onSubmit}
-      >
+      <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
-          <TextField.Input defaultValue={issue?.title} placeholder="Title" {...register("title")} />
+          <TextField.Input
+            defaultValue={issue?.title}
+            placeholder="Title"
+            {...register("title")}
+          />
         </TextField.Root>
-                  <ErrorMessage>
-            {errors.title?.message}
-            </ErrorMessage>
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -63,11 +65,11 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           )}
         />
         {errors.description && (
-          <ErrorMessage>
-            {errors.description?.message}
-            </ErrorMessage>
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         )}
-        <Button>Submit IssueZ</Button>
+        <Button disabled={isSubmitting}>
+          {issue ? "Update Issue" : "Submit New Issue"} {isSubmitting}
+        </Button>
       </form>
     </div>
   );
