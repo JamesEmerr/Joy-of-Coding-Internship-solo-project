@@ -1,13 +1,9 @@
-import IssueStatusBadge from '@/app/components/IssueStatusBadge';
-import { Prisma, PrismaClient } from '@prisma/client'
-import { Box, Button, Card, Flex, Grid, Heading, Text } from '@radix-ui/themes';
+import prisma from '@/prisma/client';
+import { Box, Flex, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
-import ReactMarkdown from 'react-markdown'
-import { Pencil2Icon } from '@radix-ui/react-icons';
-import Link from 'next/link';
+import DeleteIssueButton from './DeleteIssueButton';
 import EditIssueButton from './EditIssueButton';
 import IssueDetails from './IssueDetails';
-import DeleteIssueButton from './DeleteIssueButton';
 
 
 interface Props {
@@ -15,7 +11,7 @@ interface Props {
 }
 
 const IssueDetailPage = async ({ params}: Props) => {
- const issue = await prisma?.issue.findUnique({
+ const issue = await prisma.issue.findUnique({
     where: {id: parseInt(params.id) }
  });
     if (!issue)

@@ -10,13 +10,13 @@ const IssuesPage = async () => {
     <div>
       <div className="mb-5">
         <Button>
-          <Link href="/issues/new">New Issue</Link>
+          <Link href="/issues/new">New Task</Link>
         </Button>
       </div>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Task</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
               Status
             </Table.ColumnHeaderCell>

@@ -1,18 +1,20 @@
 "use client";
-import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
-import { useForm, Controller, Form } from "react-hook-form";
+
+import ErrorMessage from "@/app/components/ErrorMessage";
+/*import spinner */
+import { createIssueSchema } from "@/app/validationSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Issue } from "@prisma/client";
+import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateIssueSchema } from "@/app/validationSchemas";
+import { useForm, Controller } from "react-hook-form";
+import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import ErrorMessage from "@/app/components/ErrorMessage";
-import { Issue } from "@prisma/client";
 
-type IssueFormData = z.infer<typeof CreateIssueSchema>;
+type IssueFormData = z.infer<typeof createIssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
@@ -22,7 +24,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(CreateIssueSchema),
+    resolver: zodResolver(createIssueSchema),
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
@@ -30,13 +32,13 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
-      if (issue) 
-      await axios.patch("/api/issues/" + issue.id, data);
-    else 
-      await axios.post("/api/issues", data);
-      router.push("/issues");
+      if (issue) await axios.patch("/api/issues/" + issue.id, data);
+      else await axios.post("/api/issues", data);
+      router.push("/api/");
+      router.refresh();
     } catch (error) {
-      setError("your a Dufus, this is an error message");
+      setSubmitting(false);
+      setError("your a Dufus and an unexpected error occurred.");
     }
   });
 
@@ -64,11 +66,10 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && (
-          <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={isSubmitting}>
-          {issue ? "Update Issue" : "Submit New Issue"} {isSubmitting}
+          {issue ? "Update Issue" : "Submit New Issue"}{" "}
+          {isSubmitting /*spinner */}
         </Button>
       </form>
     </div>
