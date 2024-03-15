@@ -29,15 +29,15 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit( (data) => {
     try {
       setSubmitting(true);
       if (issue) 
-        await axios.patch("/api/issues/" + issue.id, data);
+       axios.patch("/api/issues/" + issue.id, data);
       else 
-        await axios.post("/api/issues", data);
-      router.push("/issues/list");
-      router.refresh();
+        axios.post("/api/issues", data);
+      router.push("/issues");
+      router.refresh   
        } catch (error) {
       setSubmitting(false);
       setError("your a Dufus and an unexpected error occurred.");
