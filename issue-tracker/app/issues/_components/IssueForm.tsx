@@ -5,7 +5,7 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import { issueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
-import { Button, Callout, TextField } from "@radix-ui/themes";
+import { Button, Callout, TextField, Theme } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -44,8 +44,8 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     }
   });
 
-  return (
-    <div className="max-w-xl">
+  return (    
+    <div className="max-w-xl"> 
       {error && (
         <Callout.Root color="red">
           <Callout.Text>{error}</Callout.Text>
@@ -73,8 +73,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           {issue ? "Update Issue" : "Submit New Issue"}{" "}
           {isSubmitting /*spinner */}
         </Button>
-      </form>
+      </form>    
     </div>
+   
   );
 };
 

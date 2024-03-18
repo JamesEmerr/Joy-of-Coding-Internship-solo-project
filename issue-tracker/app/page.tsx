@@ -18,9 +18,9 @@ export default function Home() {
       </div>
       <div
           style={{
-            backgroundColor: 'black',  
+            backgroundColor: 'white',  
             width: '1000px',
-            height: '1000px'                           
+            height: '0px'                           
         }}
         > 
       </div>              

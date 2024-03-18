@@ -1,35 +1,34 @@
-import prisma from '@/prisma/client';
-import { Box, Flex, Grid } from '@radix-ui/themes';
-import { notFound } from 'next/navigation';
-import DeleteIssueButton from './DeleteIssueButton';
-import EditIssueButton from './EditIssueButton';
-import IssueDetails from './IssueDetails';
-
+import prisma from "@/prisma/client";
+import { Box, Flex, Grid } from "@radix-ui/themes";
+import { notFound } from "next/navigation";
+import DeleteIssueButton from "./DeleteIssueButton";
+import EditIssueButton from "./EditIssueButton";
+import IssueDetails from "./IssueDetails";
 
 interface Props {
-    params: { id: string }
+  params: { id: string };
 }
 
-const IssueDetailPage = async ({ params}: Props) => {
- const issue = await prisma.issue.findUnique({
-    where: {id: parseInt(params.id) }
- });
-    if (!issue)
-    notFound();
+const IssueDetailPage = async ({ params }: Props) => {
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+  if (!issue) notFound();
 
-    return (
-    <Grid columns={{ initial: "1", sm: "5"}} gap="5">
-        <Box className='md:col-span-4'>
-            <IssueDetails issue={issue} />
+  return (
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5">      
+        <Box className="md:col-span-4">
+          <IssueDetails issue={issue} />
         </Box>
         <Box>
-            <Flex direction="column" gap="4">
+          <Flex direction="column" gap="4">
             <EditIssueButton issueId={issue.id} />
             <DeleteIssueButton issueId={issue.id} />
-            </Flex>
+          </Flex>
         </Box>
+     
     </Grid>
-  )
-    }
+  );
+};
 
-export default IssueDetailPage
+export default IssueDetailPage;
