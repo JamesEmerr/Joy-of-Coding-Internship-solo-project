@@ -10,7 +10,7 @@ const NavBar = () => {
   const links = [
     { label: "MCX", href: "/" },
     { label: "About", href: "/About" },
-    { label: "Issues", href: "/issues" },
+    { label: "Tasks", href: "/issues" },
     { label: "Calendar", href: "/Calendar" },
     { label: "Board Members", href: "/BoardMembers" },
     { label: "Donations", href: "/Donations" },
