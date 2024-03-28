@@ -3,18 +3,18 @@ import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
+const CantDeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const router = useRouter();
 
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button color="red">Delete Task</Button>
+        <Button color="red">Delete Issue</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
         <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
         <AlertDialog.Description>
-          Are you sure you want to delet this Task?
+          You are not allowed to Delete this Task
         </AlertDialog.Description>
         <Flex mt="4" gap="3">
           <AlertDialog.Cancel>
@@ -31,7 +31,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
                 router.refresh        
               }}
             >
-              Delete Task
+              Delete Issue
             </Button>
           </AlertDialog.Action>
         </Flex>
@@ -40,4 +40,4 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   );
 };
 
-export default DeleteIssueButton;
+export default CantDeleteIssueButton;
