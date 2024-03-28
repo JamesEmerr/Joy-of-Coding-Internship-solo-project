@@ -21,19 +21,7 @@ const CantDeleteIssueButton = ({ issueId }: { issueId: number }) => {
             <Button variant="soft" color="gray">
               Cancel
             </Button>
-          </AlertDialog.Cancel>
-          <AlertDialog.Action>
-            <Button
-              color="red"
-              onClick={ () => {
-                axios.delete("/api/issues/" + issueId);
-                router.push("/issues");  
-                router.refresh        
-              }}
-            >
-              Delete Issue
-            </Button>
-          </AlertDialog.Action>
+          </AlertDialog.Cancel>          
         </Flex>
       </AlertDialog.Content>
     </AlertDialog.Root>
