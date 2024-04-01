@@ -1,3 +1,5 @@
+// K Programming //
+// MCX - Final Project //  
 import { Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -20,7 +22,7 @@ export default function Home() {
           style={{
             backgroundColor: 'white',  
             width: '1000px',
-            height: '0px'                           
+            height: '10px'                           
         }}
         > 
       </div>              
